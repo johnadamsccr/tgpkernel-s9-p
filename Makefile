@@ -261,6 +261,7 @@ SUBARCH := $(shell uname -m | sed -e s/i.86/x86/ -e s/x86_64/x86/ \
 ARCH            ?= arm64
 CROSS_COMPILE   ?= $(CCACHE) $BUILD_CROSS_COMPILE
 
+
 # Architecture as present in compile.h
 UTS_MACHINE 	:= $(ARCH)
 SRCARCH 	:= $(ARCH)
@@ -349,6 +350,9 @@ AS		= $(CROSS_COMPILE)as
 LD		= $(CROSS_COMPILE)ld
 LDGOLD		= $(CROSS_COMPILE)ld.gold
 CC		= $(CCACHE) $(CROSS_COMPILE)gcc
+
+$(info CC is [${CC}])
+
 CPP		= $(CC) -E
 AR		= $(CROSS_COMPILE)ar
 NM		= $(CROSS_COMPILE)nm

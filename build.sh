@@ -9,8 +9,10 @@ export RDIR=$(pwd)
 export KERNELNAME=TGPKernel
 export VERSION_NUMBER=$(<build/version)
 export ARCH=arm64
-export BUILD_CROSS_COMPILE=~/android/toolchains/gcc-arm-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
-BUILD_JOB_NUMBER=`grep processor /proc/cpuinfo|wc -l`
+#export BUILD_CROSS_COMPILE=~/android/toolchains/gcc-arm-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
+export BUILD_CROSS_COMPILE=/home/johnadams/Documents/GitHub/aarch64-linux-android-4.9-google/bin/aarch64-linux-android-
+BUILD_JOB_NUMBER=1
+#`grep processor /proc/cpuinfo|wc -l`
 WORK=.work
 WORKDIR=$RDIR/$WORK
 ZIPDIR=$RDIR/.work_zip
@@ -142,7 +144,7 @@ MODEL=S9
 FUNC_CLEAN
 FUNC_COPY
 KERNELCONFIG=$WORK/arch/arm64/configs/exynos9810-starlte_defconfig
-make -C $RDIR O=$WORK -j$BUILD_JOB_NUMBER ARCH=$ARCH CROSS_COMPILE=$BUILD_CROSS_COMPILE ../../../$KERNELCONFIG || exit -1
+make -C $RDIR O=$WORK -j$BUILD_JOB_NUMBER -n ARCH=$ARCH CROSS_COMPILE=$BUILD_CROSS_COMPILE ../../../$KERNELCONFIG || exit -1
 mv -f $WORKDIR/.config $RDIR/arch/arm64/configs/exynos9810-starlte_defconfig
 # Config for S9+
 MODEL=S9+
@@ -152,7 +154,7 @@ KERNELCONFIG=$WORK/arch/arm64/configs/exynos9810-star2lte_defconfig
 make -C $RDIR O=$WORK -j$BUILD_JOB_NUMBER ARCH=$ARCH CROSS_COMPILE=$BUILD_CROSS_COMPILE ../../../$KERNELCONFIG || exit -1
 mv -f $WORKDIR/.config $RDIR/arch/arm64/configs/exynos9810-star2lte_defconfig
 # Clean up
-FUNC_CLEAN
+# FUNC_CLEAN
 exit
 }
 
@@ -234,6 +236,7 @@ cp -rf $RDIR/build/zip/* $ZIPDIR
 mkdir -p $ZIPDIR/tgpkernel/kernels
 
 START_TIME=`date +%s`
+FUNC_CLEAN
 
 # Build S9 img files
 if [ $BUILD960 = "yes" ]; then
@@ -273,7 +276,8 @@ ZIP_NAME=$KERNELNAME.G96xx.v$VERSION_NUMBER.$ZIP_DATE.zip
 ZIP_FILE_TARGET=$ZIPDIR/$ZIP_NAME
 FUNC_BUILD_ZIP
 END_TIME=`date +%s`
-FUNC_CLEAN
+
+
 [ -d "$ZIPDIR" ] && rm -rf $ZIPDIR
 let "ELAPSED_TIME=$END_TIME-$START_TIME"
 echo ""
