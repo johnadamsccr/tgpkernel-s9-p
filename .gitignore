@@ -22,3 +22,20 @@
 # Kconfig presets
 all.config
 
+include/generated/*
+arch/arm64/include/generated/*
+include/config/*
+
+.config
+.config.old
+include/config/afc/charger/mode.h
+include/config/af/host/control.h
+include/config/advise/syscalls.h
+include/config/acpm/dvfs.h
+include/config/64bit.h
+scripts/selinux/mdp/mdp
+scripts/selinux/genheaders/genheaders
+scripts/mod/modpost
+scripts/mod/mk_elfconfig
+scripts/mod/devicetable-offsets.s
+scripts/dtc/dtc

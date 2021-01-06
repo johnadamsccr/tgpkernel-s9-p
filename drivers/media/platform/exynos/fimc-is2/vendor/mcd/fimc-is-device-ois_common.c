@@ -41,13 +41,15 @@
 #include "fimc-is-device-af.h"
 #endif
 #include <linux/pinctrl/pinctrl.h>
-#if defined (CONFIG_OIS_USE_RUMBA_S4)
-#include "fimc-is-device-ois_s4.h"
+// if defined (CONFIG_OIS_USE_RUMBA_S4)
+#include "fimc-is-device-ois_s4.h" // -> ja: force s4
+/*
 #elif defined (CONFIG_OIS_USE_RUMBA_S6)
 #include "fimc-is-device-ois_s6.h"
 #elif defined (CONFIG_OIS_USE_RUMBA_SA)
 #include "fimc-is-device-ois_sa.h"
 #endif
+*/
 
 #define FIMC_IS_OIS_DEV_NAME		"exynos-fimc-is-ois"
 #define OIS_I2C_RETRY_COUNT	2

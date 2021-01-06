@@ -119,7 +119,7 @@ struct YYLTYPE
 
 
 extern YYSTYPE yylval;
-extern YYLTYPE yylloc;
+// extern YYLTYPE yylloc; ja - removed to support gcc 10
 int yyparse (void);
 
 #endif /* !YY_YY_DTC_PARSER_TAB_H_INCLUDED  */

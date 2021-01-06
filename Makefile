@@ -351,7 +351,7 @@ LD		= $(CROSS_COMPILE)ld
 LDGOLD		= $(CROSS_COMPILE)ld.gold
 CC		= $(CCACHE) $(CROSS_COMPILE)gcc
 
-$(info CC is [${CC}])
+# $(info CC is [${CC}])
 
 CPP		= $(CC) -E
 AR		= $(CROSS_COMPILE)ar
